@@ -42,12 +42,13 @@ package:
     - sampledata/**
 
 functions:
-  alertevent:
+  s3slack:
     handler: EventNotifiers::EventNotifier.Handler::S3Slack
     events: 
       - s3:
           bucket: ssdbbackup
           event: s3:ObjectCreated:*
+          enabled: false
           existing: true
           rules:
             - prefix: ssds/
@@ -55,6 +56,7 @@ functions:
       - s3:
           bucket: ssdbbackup
           event: s3:ObjectRemoved:*
+          enabled: false
           existing: true
 
   # alerteventdetails:
